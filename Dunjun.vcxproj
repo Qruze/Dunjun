@@ -76,6 +76,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include=".clang-format" />
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\Dunjun\Common.hpp" />
