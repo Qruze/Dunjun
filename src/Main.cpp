@@ -3,8 +3,6 @@
 
 #include <iostream>
 
-
-
 GLOBAL const int g_windowWidth = 854;
 GLOBAL const int g_windowHeight = 480;
 
@@ -49,11 +47,26 @@ int main(int argc, char** argv)
 		if (glfwGetKey(window, GLFW_KEY_F11))
 		{
 			fullscreen = !fullscreen;
+
 			GLFWwindow* newWindow;
+
 			if (fullscreen)
-				newWindow = glfwCreateWindow(1920, 1080, "Dunjun", glfwGetPrimaryMonitor(), window);
+			{
+				int count;
+				const GLFWvidmode* modes =
+				    glfwGetVideoModes(glfwGetPrimaryMonitor(), &count);
+
+				newWindow = glfwCreateWindow(modes[count - 1].width,
+				                             modes[count - 1].height,
+				                             "Dunjun",
+				                             glfwGetPrimaryMonitor(),
+				                             window);
+			}
 			else
-				newWindow = glfwCreateWindow(g_windowWidth, g_windowHeight, "Dunjun", nullptr, window);
+			{
+				newWindow = glfwCreateWindow(
+				    g_windowWidth, g_windowHeight, "Dunjun", nullptr, window);
+			}
 
 			glfwDestroyWindow(window);
 			window = newWindow;
